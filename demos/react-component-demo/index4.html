@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,15 +14,27 @@
     constructor(...args) {
       super(...args);
       this.state = {
-        text: 'World'
+        text: 'World',
+        isClicked:false
       };
     }
 
     handleClick() {
+      let isClicked = !this.state.isClicked;
       this.setState({
-        text: 'Clicked'
+        isClicked:isClicked,
+        text: isClicked ? this.getData() : 'World'
       });
     }
+
+    getData(){
+        var data=new Date();
+        var year=data.getFullYear();
+        var month=data.getMonth()+1;
+        var day=data.getDate();
+        return year+'年'+month+'月'+day+'日';
+    }
+
 
     render() {
       return <h1 onClick={this.handleClick.bind(this)}>
